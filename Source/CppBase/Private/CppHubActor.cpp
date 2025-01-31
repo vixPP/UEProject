@@ -28,28 +28,34 @@ void ACppHubActor::Tick(float DeltaTime)
 
 void ACppHubActor::OnTimeToSpawn()
 {
-	if (++CurrentTimerCount <= TotalCount) {
+	if (++CurrentTimerCount <= TotalCount) 
+	{
 		const FVector Location = GetActorLocation() + FVector(FMath::FRandRange(200.0f, 1000.0f), FMath::FRandRange(200.0f, 1000.0f), 0.0f);
 		const FRotator Rotation = FRotator::ZeroRotator;
 		ACppBaseActor* SpawnObject = GetWorld()->SpawnActor<ACppBaseActor>(CppClass, Location, Rotation);
-		if (SpawnObject) {
+		if (SpawnObject) 
+		{
 			SpawnedObjects.Add(SpawnObject);
 		}
 	}
 	else {
 		GetWorldTimerManager().ClearTimer(SpawnTimerHandle);
-		for (int i = TotalCount; i >= 1; --i) {
+		for (int i = TotalCount; i >= 1; --i) 
+		{
 			GetWorldTimerManager().SetTimer(DestroyTimerHandle, this, &ACppHubActor::OnTimeToDestroy, DestroyTimerRate, true);
 		}
 	}
 }
 
-void ACppHubActor::OnTimeToDestroy() {
-	if (!SpawnedObjects.IsEmpty()) {
+void ACppHubActor::OnTimeToDestroy() 
+{
+	if (!SpawnedObjects.IsEmpty()) 
+	{
 		SpawnedObjects.Top()->Destroy();
 		SpawnedObjects.Pop();
 	}
-	else {
+	else 
+	{
 		GetWorldTimerManager().ClearTimer(DestroyTimerHandle);
 	}
 }

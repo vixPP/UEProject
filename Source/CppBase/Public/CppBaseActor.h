@@ -39,24 +39,12 @@ public:
 	// Sets default values for this actor's properties
 	ACppBaseActor();
 
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* Mesh;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	UPROPERTY(VisibleAnywhere)
-	FString PlayerName;
-
-	UPROPERTY(EditAnywhere)
-	int EnemyNum = 20;
-
-	UPROPERTY(EditDefaultsOnly)
-	float CurrentHealth = 57.54687;
-
-	UPROPERTY(EditInstanceOnly)
-	bool IsAlive = true;
-
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* Mesh;
 
 	UFUNCTION(BlueprintCallable)
 	void ShowInformation();
@@ -65,7 +53,16 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable)
+	void SinMovement();
+
+	UPROPERTY(BlueprintReadWrite)
+	float Amplitude = 70.0f;
+
+	UPROPERTY(BlueprintReadWrite)
+	float Frequency = 4.0f;
+
 private:
 	
-	void ShowActorInformation();
+	FVector InitialLocation;
 };
