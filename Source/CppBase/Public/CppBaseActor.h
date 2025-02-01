@@ -56,10 +56,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SinMovement();
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere)
 	float Amplitude = 70.0f;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere)
 	float Frequency = 4.0f;
 
 private:
